@@ -47,15 +47,6 @@ class LoadReplayState extends MusicBeatState
         addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
 
         addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
-				if(!FlxG.save.data.finishedBrightsideStory){
-					addWeek(['Saving-Face','Parasitic-Routine','Reign-of-Apathy'],7,['brightside','brightside-masked','brightside-masked']);
-				}else{
-					addWeek(['Saving-Face','Parasitic-Routine','Reign-of-Apathy','Personal-Space-Invasion'],7,['brightside','brightside-masked','brightside-masked','parasite']);
-				}
-
-				if(FlxG.save.data.isAfool){
-					addWeek(['You-Are-A-Fool'],-1,['vase']);
-				}
 
         for(i in 0...controlsStrings.length)
         {

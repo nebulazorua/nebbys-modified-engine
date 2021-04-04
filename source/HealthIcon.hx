@@ -25,10 +25,6 @@ class HealthIcon extends FlxSprite
 		animation.add('mom-car', [6, 7], 0, false, isPlayer);
 		animation.add('tankman', [8, 9], 0, false, isPlayer);
 		animation.add('face', [10, 11], 0, false, isPlayer);
-		animation.add('brightside-masked', [26, 27], 0, false, isPlayer);
-		animation.add('brightside', [24, 25], 0, false, isPlayer);
-		animation.add('vase', [24, 25], 0, false, isPlayer);
-		animation.add('parasite', [28,29], 0, false, isPlayer);
 		animation.add('vase', [30,31], 0, false, isPlayer);
 		animation.add('dad', [12, 13], 0, false, isPlayer);
 		animation.add('senpai', [22, 22], 0, false, isPlayer);

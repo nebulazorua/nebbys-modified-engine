@@ -83,11 +83,8 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				if(PlayState.SONG.song.toLowerCase()=='personal-space-invasion'){
-					frames = Paths.getSparrowAtlas('PARASITENOTE_assets');
-				}else{
-					frames = Paths.getSparrowAtlas('NOTE_assets');
-				}
+				frames = Paths.getSparrowAtlas('NOTE_assets');
+
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
 				animation.addByPrefix('blueScroll', 'blue0');

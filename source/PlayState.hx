@@ -646,11 +646,6 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		if(SONG.song.toLowerCase()=='personal-space-invasion'){
-			gf.visible = false;
-		}else{
-			add(gf);
-		}
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
