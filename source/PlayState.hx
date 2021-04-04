@@ -1049,10 +1049,12 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
-				case 'saving-face' | 'parasitic-routine' | 'reign-of-apathy' | 'personal-space-invasion':
-					bsIntro(doof);
 				default:
-					startCountdown();
+					if(doof!=null){
+						showDialogue(doof);
+					}else{
+						startCountdown();
+					}
 			}
 		}
 		else
@@ -1073,7 +1075,7 @@ class PlayState extends MusicBeatState
 	}
 
 
-	function bsDialogue(?d:DialogueBox):Void {
+	function showDialogue(?d:DialogueBox):Void {
 		new FlxTimer().start(0.3, function(tmr:FlxTimer){
 			if (d != null)
 			{
@@ -1083,59 +1085,6 @@ class PlayState extends MusicBeatState
 		});
 	}
 
-	function bsIntro(?dialogueBox:DialogueBox):Void
-	{
-		if(SONG.song.toLowerCase()=='saving-face' || SONG.song.toLowerCase()=='parasitic-routine' || SONG.song.toLowerCase()=='personal-space-invasion' ){
-			inCutscene = true;
-			var white:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.WHITE);
-			white.scrollFactor.set();
-			var black:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
-			black.alpha=0;
-			black.scrollFactor.set();
-			add(white);
-			add(black);
-			var bsShit:FlxSprite = new FlxSprite();
-			if(SONG.song.toLowerCase()=='parasitic-routine'){
-				bsShit.frames = Paths.getSparrowAtlas('maskintro');
-				bsShit.animation.addByPrefix('idle', 'intro', 24, false);
-				bsShit.setGraphicSize(Std.int(FlxG.width*1.5),Std.int(FlxG.height*1.5));
-				FlxG.sound.play(Paths.sound('Facefuck'), 1, false, null, true);
-			}else if(SONG.song.toLowerCase()=='saving-face' ){
-				bsShit.frames = Paths.getSparrowAtlas('song1Intro');
-				bsShit.animation.addByPrefix('idle', 'intro', 24, false);
-				FlxG.sound.play(Paths.sound('BruhLemmeWatchDaTeletubbies'), 1, false, null, true);
-			}else if(SONG.song.toLowerCase()=='personal-space-invasion' ){
-				bsShit.frames = Paths.getSparrowAtlas('parasitebreakin');
-				black.alpha=1;
-				white.alpha=0;
-				bsShit.animation.addByPrefix('idle', 'parasiteIntro', 24, false);
-				bsShit.setGraphicSize(Std.int(FlxG.width*1.1),Std.int(FlxG.height*1.1));
-				FlxG.sound.play(Paths.sound('MyMindBitch'), 1, false, null, true);
-			}
-
-			bsShit.scrollFactor.set();
-			bsShit.updateHitbox();
-			bsShit.screenCenter();
-			add(bsShit);
-			bsShit.animation.play('idle');
-
-			bsShit.animation.finishCallback = function(name){
-				FlxG.camera.fade(FlxG.camera.bgColor, .5, false,function(){
-
-					remove(bsShit);
-					remove(black);
-					remove(white);
-					FlxG.camera.fade(FlxG.camera.bgColor, .5, true,function(){
-						bsDialogue(dialogueBox);
-					});
-				});
-			}
-		}else{
-			bsDialogue(dialogueBox);
-		}
-
-
-	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
 	{
