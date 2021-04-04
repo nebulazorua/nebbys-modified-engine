@@ -673,12 +673,6 @@ class PlayState extends MusicBeatState
 
 				case "spooky":
 					boyfriend.y += 200;
-				case "vase":
-					boyfriend.y -= 175;
-				case "brightside":
-					boyfriend.y += 250;
-				case "parasite":
-					boyfriend.x -= 500;
 				case "monster":
 					boyfriend.y += 100;
 				case 'monster-christmas':
