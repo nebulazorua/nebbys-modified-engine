@@ -758,12 +758,6 @@ class PlayState extends MusicBeatState
 
 			case "spooky":
 				dad.y += 200;
-			case "vase":
-				dad.y -= 175;
-			case "brightside":
-				dad.y += 250;
-			case "parasite":
-				dad.x -= 500;
 			case "monster":
 				dad.y += 100;
 			case 'monster-christmas':
@@ -1502,11 +1496,7 @@ class PlayState extends MusicBeatState
 					}
 
 				default:
-					if(SONG.song.toLowerCase()=='personal-space-invasion'){
-						babyArrow.frames = Paths.getSparrowAtlas('PARASITENOTE_assets');
-					}else{
-						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
-					}
+					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -1792,8 +1782,6 @@ class PlayState extends MusicBeatState
 					case 'senpai-angry':
 						camFollow.y = boyfriend.getMidpoint().y - 430;
 						camFollow.x = boyfriend.getMidpoint().x - 100;
-					case 'parasite':
-						camFollow.x = boyfriend.getMidpoint().x + 600;
 				}
 
 				if (boyfriend.curCharacter == 'mom')
@@ -1845,8 +1833,6 @@ class PlayState extends MusicBeatState
 					case 'senpai-angry':
 						camFollow.y = dad.getMidpoint().y - 430;
 						camFollow.x = dad.getMidpoint().x - 100;
-					case 'parasite':
-						camFollow.x = dad.getMidpoint().x + 600;
 				}
 
 				if (dad.curCharacter == 'mom')
@@ -2659,8 +2645,6 @@ class PlayState extends MusicBeatState
 			var bfVar:Float=4;
 			if(boyfriend.curCharacter=='dad')
 				bfVar=6.1;
-			else if(boyfriend.curCharacter == 'parasite' || boyfriend.curCharacter == 'vase')
-				bfVar=10;
 
 			if (boyfriend.holdTimer > Conductor.stepCrochet * bfVar * 0.001 && !up && !down && !right && !left)
 			{
