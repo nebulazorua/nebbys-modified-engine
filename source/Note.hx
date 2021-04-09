@@ -83,8 +83,11 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
-
+				if(PlayState.SONG.song.toLowerCase()=='personal-space-invasion'){
+					frames = Paths.getSparrowAtlas('PARASITENOTE_assets');
+				}else{
+					frames = Paths.getSparrowAtlas('NOTE_assets');
+				}
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
 				animation.addByPrefix('blueScroll', 'blue0');
@@ -188,18 +191,15 @@ class Note extends FlxSprite
 
 		if (mustPress)
 		{
-			if ((strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime < Conductor.songPosition + Conductor.safeZoneOffset))
-			{
+			// The * 0.5 is so that it's easier to hit them too late, instead of too early
+			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
+				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
 				canBeHit = true;
-			}
 			else
 				canBeHit = false;
 
 			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset && !wasGoodHit)
-			{
 				tooLate = true;
-			}
 		}
 		else
 		{

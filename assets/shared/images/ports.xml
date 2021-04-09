@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ports.png">
+	<!-- Created with Adobe Animate version 21.0.3.38773 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dad0000" x="0" y="0" width="262" height="254" pivotX="0" pivotY="0"/>
+	<SubTexture name="gf0000" x="262" y="0" width="314" height="231" pivotX="0" pivotY="0"/>
+	<SubTexture name="gf-cheer0000" x="576" y="0" width="381" height="241" pivotX="0" pivotY="0"/>
+</TextureAtlas>
