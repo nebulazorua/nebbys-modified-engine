@@ -128,15 +128,6 @@ class MainMenuState extends MusicBeatState
 	function onKeyDown(event:KeyboardEvent):Void{
 		code = code + String.fromCharCode(event.charCode);
 		keyTimer=2;
-		if(code=="iamafool"){
-			FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
-			PlayState.SONG = Song.loadFromJson("you-are-a-fool-hard", "dontgopeekingaroundwhereyoushouldnt");
-			PlayState.isStoryMode = false;
-			PlayState.storyDifficulty = 2;
-
-			PlayState.storyWeek = -1;
-			LoadingState.loadAndSwitchState(new PlayState());
-		}
 	}
 
 	override function update(elapsed:Float)
