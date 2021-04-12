@@ -171,6 +171,7 @@ class PlayState extends MusicBeatState
 	public static var daPixelZoom:Float = 6;
 
 	public static var theFunne:Bool = true;
+	public static var playOpponent:Bool = false;
 	var funneEffect:FlxSprite;
 	var inCutscene:Bool = false;
 	public static var repPresses:Int = 0;
@@ -183,6 +184,7 @@ class PlayState extends MusicBeatState
 	{
 
 		theFunne = FlxG.save.data.newInput;
+		playOpponent = FlxG.save.data.playOpponent;
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -640,7 +642,7 @@ class PlayState extends MusicBeatState
 		if (curStage == 'limo')
 			add(limo);
 		var camPos:FlxPoint;
-		if(FlxG.save.data.playOpponent){
+		if(playOpponent){
 			boyfriend = new Boyfriend(100, 100, SONG.player2);
 			camPos = new FlxPoint(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y);
 
@@ -896,7 +898,7 @@ class PlayState extends MusicBeatState
 		healthBarBG.scrollFactor.set();
 
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, FlxG.save.data.playOpponent ? LEFT_TO_RIGHT : RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, playOpponent ? LEFT_TO_RIGHT : RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
@@ -1374,7 +1376,7 @@ class PlayState extends MusicBeatState
 					gottaHitNote = !section.mustHitSection;
 				}
 
-				if(FlxG.save.data.playOpponent)
+				if(playOpponent)
 					gottaHitNote=!gottaHitNote;
 
 				var oldNote:Note;
@@ -1402,7 +1404,7 @@ class PlayState extends MusicBeatState
 
 					sustainNote.mustPress = gottaHitNote;
 
-					if (FlxG.save.data.playOpponent && !sustainNote.mustPress || !FlxG.save.data.playOpponent && sustainNote.mustPress)
+					if (playOpponent && !sustainNote.mustPress || !playOpponent && sustainNote.mustPress)
 					{
 						sustainNote.x += FlxG.width / 2; // general offset
 					}
@@ -1411,7 +1413,7 @@ class PlayState extends MusicBeatState
 
 				swagNote.mustPress = gottaHitNote;
 
-				if (FlxG.save.data.playOpponent && !swagNote.mustPress || !FlxG.save.data.playOpponent && swagNote.mustPress)
+				if (playOpponent && !swagNote.mustPress || !playOpponent && swagNote.mustPress)
 				{
 					swagNote.x += FlxG.width / 2; // general offset
 				}
@@ -1527,7 +1529,7 @@ class PlayState extends MusicBeatState
 
 			babyArrow.ID = i;
 
-			if (FlxG.save.data.playOpponent && player==0 || !FlxG.save.data.playOpponent && player == 1)
+			if (playOpponent && player==0 || !playOpponent && player == 1)
 			{
 				playerStrums.add(babyArrow);
 			}
@@ -1685,7 +1687,7 @@ class PlayState extends MusicBeatState
 
 		var iconOffset:Int = 26;
 		var percent = healthBar.percent;
-		if(FlxG.save.data.playOpponent){
+		if(playOpponent){
 			percent = 100-percent;
 		}
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(percent, 0, 100, 100, 0) * 0.01) - iconOffset);
@@ -1751,7 +1753,7 @@ class PlayState extends MusicBeatState
 			{
 				// trace(PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
 			}
-			if(FlxG.save.data.playOpponent){
+			if(playOpponent){
 			if (camFollow.x != boyfriend.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
 			{
 				camFollow.setPosition(boyfriend.getMidpoint().x + 150, boyfriend.getMidpoint().y - 100);
@@ -3007,7 +3009,7 @@ class PlayState extends MusicBeatState
 		lightningStrikeBeat = curBeat;
 		lightningOffset = FlxG.random.int(8, 24);
 
-		if(FlxG.save.data.playOpponent)
+		if(playOpponent)
 			dad.playAnim('scared', true);
 		else
 			boyfriend.playAnim('scared', true);
@@ -3064,7 +3066,7 @@ class PlayState extends MusicBeatState
 			// Conductor.changeBPM(SONG.bpm);
 
 			// Dad doesnt interupt his own notes
-			if(!FlxG.save.data.playOpponent){
+			if(!playOpponent){
 				if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 					dad.dance();
 			}else{
@@ -3104,7 +3106,7 @@ class PlayState extends MusicBeatState
 			boyfriend.dance();
 		}
 
-		if(FlxG.save.data.playOpponent){
+		if(playOpponent){
 
 		if (!dad.animation.curAnim.name.startsWith("sing"))
 		{
@@ -3114,7 +3116,7 @@ class PlayState extends MusicBeatState
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 		{
-			if(FlxG.save.data.playOpponent)
+			if(playOpponent)
 				dad.playAnim('hey', true);
 			else
 				boyfriend.playAnim('hey', true);
